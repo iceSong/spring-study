@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.atomic.AtomicLong;
@@ -28,16 +29,28 @@ public class GreetingController {
 
     /**
      * requestMapping默认接受所有http请求, 使用method=GET来限制
+     *
      * @param name
      * @return
      */
     @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name, @RequestParam(value = "pwd") String pwd) {
-        PreparedStatement statement = DbFactory.prepareStatement(sql);
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name, @RequestParam(value = "pwd") String pwd) {
+        //PreparedStatement statement = DbFactory.prepareStatement(sql);
+        Statement statement = DbFactory.getStatement();
         try {
-            statement.setString(1, name);
-            statement.setString(2, pwd);
-            statement.execute();
+            String s = "select * from t_user where name='%s' and password='%s' limit 1";
+            //statement.setString(1, name);
+            //statement.setString(2, pwd);
+            System.out.println(String.format(s, name, pwd));
+            //ResultSet rs = statement.executeQuery();
+            ResultSet rs = statement.executeQuery(String.format(s, name, pwd));
+
+
+            while (rs.next()) {
+                System.out.println(rs.getInt("id"));
+                System.out.println(rs.getString("name"));
+                System.out.println(rs.getString("password"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

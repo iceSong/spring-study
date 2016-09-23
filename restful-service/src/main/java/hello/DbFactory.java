@@ -13,7 +13,7 @@ public class DbFactory {
     private static String uri = "jdbc:mysql://localhost:3306/demo?"
             + "user=root&password=BINGsong&useUnicode=true&characterEncoding=UTF8";
 
-    public static Statement getStatement(String sql) {
+    public static Statement getStatement() {
         Statement statement = null;
         getConnection();
         try {
@@ -39,7 +39,7 @@ public class DbFactory {
 
     private static void getConnection() {
         if (conn == null) {
-            synchronized (conn) {
+            synchronized (DbFactory.class) {
                 if (conn == null) {
                     try {
                         Class.forName("com.mysql.jdbc.Driver");

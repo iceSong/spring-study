@@ -12,6 +12,16 @@
         <module>restful-service</module>
     </modules>
 
+
+    <!-- Inherit defaults from Spring Boot -->
+    <!--
+    <parent>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-parent</artifactId>
+         <version>1.4.1.RELEASE</version>
+     </parent>
+     -->
+
     <dependencyManagement>
         <dependencies>
             <dependency>
