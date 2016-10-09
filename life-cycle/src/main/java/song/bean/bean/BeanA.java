@@ -12,7 +12,7 @@ public class BeanA {
     }
 
     {
-        System.out.println("BeanA普通代码块");
+        System.out.println("BeanA普通代码块，只在new的时候执行");
     }
 
     public void init(){

@@ -13,7 +13,7 @@ public class BeanB extends BeanA{
     }
 
     {
-        System.out.println("BeanB普通代码块");
+        System.out.println("BeanB普通代码块，只在new的时候执行");
     }
 
     public void init (){
