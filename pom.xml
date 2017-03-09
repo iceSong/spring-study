@@ -11,6 +11,8 @@
     <modules>
         <module>restful-service</module>
         <module>life-cycle</module>
+        <module>conf-anno</module>
+        <module>security</module>
     </modules>
 
 
